@@ -623,8 +623,8 @@ export function Navbar({ category, onScrollTo }: { category: string, onScrollTo?
 //   );
 // }
 
-export function AboutPart({ onDownClick, skillsGridRef }: { onDownClick?: () => void, skillsGridRef?: React.RefObject<HTMLDivElement> }) {
-  const desc = useRef<HTMLDivElement>(null!);
+export function AboutPart() {
+  // const desc = useRef<HTMLDivElement>(null!);
   const greetingRef = useRef<HTMLSpanElement>(null);
   const [greetingIndex, setGreetingIndex] = useState(0);
 
@@ -796,7 +796,7 @@ export default function Home() {
 
 
       <div ref={aboutRef} className="w-full min-h-[10vh] flex flex-col items-center justify-center border-2 border-dashed border-[var(--color-0)]">
-        <AboutPart skillsGridRef={skillsGridRef as React.RefObject<HTMLDivElement>} />
+        <AboutPart />
         <div ref={skillsGridRef}>
           <SkillsGrid />
         </div>
