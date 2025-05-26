@@ -203,8 +203,7 @@ export function ProjectScroller() {
       ? [0, 0, 0, 0, 0]
       : [0, 0, 0, 0, 0];
 
-    gsap.utils.toArray<HTMLDivElement>('.row').forEach((row, i) => {
-      // Use 'i' in the logic below, so this is not an unused variable anymore
+    gsap.utils.toArray<HTMLDivElement>('.row').forEach((row , i) => {
       const leftCard = row.querySelector('.card-left');
       const rightCard = row.querySelector('.card-right');
 
@@ -321,7 +320,7 @@ export function SkillsGrid() {
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
-    cardRefs.current.forEach((card, i) => {
+    cardRefs.current.forEach((card) => {
       if (!card) return;
       // Remove any previous listeners to avoid stacking
       
