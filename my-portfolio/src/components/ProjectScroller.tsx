@@ -76,10 +76,10 @@ export function ProjectScroller() {
             style={{ height: "180px", marginBottom: i !== projects.length - 1 ? "30px" : "0" }}
           >
             <div
-              className={`card ${project.side === "left" ? "card-left" : "card-right"} w-[700px] h-[400px] rounded-xl bg-zinc-800 shadow-2xl flex items-center justify-center text-6xl font-bold transition-transform duration-0 border-5 border-[var(--color-3)] drop-shadow-[0_40px_80px_var(--color-4)] relative overflow-hidden`}
+              className={`card ${project.side === "left" ? "card-left" : "card-right"} w-[700px] h-[400px] rounded-xl bg-zinc-800 shadow-2xl flex items-center justify-center text-4xl font-bold transition-transform duration-0 border-5 border-[var(--color-3)] drop-shadow-[0_40px_80px_var(--color-4)] relative overflow-hidden`}
               style={{ backgroundImage: `url(${project.image})`, backgroundSize: "cover", backgroundPosition: "center" }}
             >
-              <div className="absolute inset-0 bg-black/50 pointer-events-none rounded-xl" />
+              <div className="absolute inset-0 bg-black/50 pointer-events-none" />
               <span className="relative z-10">{project.title}</span>
             </div>
           </div>
