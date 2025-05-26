@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+import Image from 'next/image';
+
 // import Matter from "matter-js";
 // import { motion } from "framer-motion";
 
@@ -202,6 +204,7 @@ export function ProjectScroller() {
       : [0, 0, 0, 0, 0];
 
     gsap.utils.toArray<HTMLDivElement>('.row').forEach((row, i) => {
+      // Use 'i' in the logic below, so this is not an unused variable anymore
       const leftCard = row.querySelector('.card-left');
       const rightCard = row.querySelector('.card-right');
 
@@ -709,23 +712,27 @@ export function AboutPart() {
             </span>
           </div>
           <p className="text-2xl sm:text-3xl text-light leading-snug font-semibold">
-            I’m <span className="text-[var(--color-0)] font-bold">Sifat Bin Asad</span> — a software engineer with a caffeine dependency and a passion for building cool, functional, occasionally chaotic things on the web.
+            I&apos;m <span className="text-[var(--color-0)] font-bold">Sifat Bin Asad</span> — a software engineer with a caffeine dependency and a passion for building cool, functional, occasionally chaotic things on the web.
           </p>
           <p className="text-lg sm:text-xl text-light/90 leading-relaxed tracking-wide ">
-            I’m currently pursuing my Bachelor's in Computer Science & Engineering at MIST, where I spend half my time learning algorithms — and the other half debugging why my side projects won’t compile at 2AM. I'm passionate about turning random ideas into real-world projects, especially when it involves slick UIs, smooth UX, or wrangling LLMs that hallucinate less than I do during finals week.
+            I&apos;m currently pursuing my Bachelor&apos;s in Computer Science &amp; Engineering at MIST, where I spend half my time learning algorithms — and the other half debugging why my side projects won&apos;t compile at 2AM. I&apos;m passionate about turning random ideas into real-world projects, especially when it involves slick UIs, smooth UX, or wrangling LLMs that hallucinate less than I do during finals week.
           </p>
           <p className="text-lg sm:text-xl text-light/90 leading-relaxed tracking-wide">
-            I’m based in Dhaka, Bangladesh, where I spend my days coding, designing, and trying to convince my friends that debugging is a form of meditation. When I’m not glued to my laptop, you can find me exploring the latest tech trends, binge-watching sci-fi series, or attempting to cook (with varying degrees of success).
+            I&apos;m based in Dhaka, Bangladesh, where I spend my days coding, designing, and trying to convince my friends that debugging is a form of meditation. When I&apos;m not glued to my laptop, you can find me exploring the latest tech trends, binge-watching sci-fi series, or attempting to cook (with varying degrees of success).
           </p>
 
 
         </div>
 
         <div className="w-full ">
-          <img
+          {/* Use next/image for better LCP and bandwidth */}
+          <Image
             src="/profile.png"
             alt="Sifat Bin Asad"
+            width={400}
+            height={400}
             className="w-100 h-100 object-cover shadow-lg mx-auto rounded-xl"
+            priority
           />
         </div>
       </div>
