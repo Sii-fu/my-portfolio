@@ -23,9 +23,13 @@ export default function Home() {
     else if (category === "Projects") ref = projectsRef;
     else if (category === "Journey") ref = journeyRef;
     else if (category === "Contact") ref = contactRef;
-    if (ref && ref.current) {
+
+    if (ref?.current) {
+      const offset = window.innerHeight * 0.01; // 10vh
+      const y = ref.current.getBoundingClientRect().top + window.scrollY + offset;
+
       gsap.to(window, {
-        scrollTo: { y: ref.current, offsetY: 40 },
+        scrollTo: y,
         duration: 1,
         ease: "power2.inOut"
       });
@@ -34,8 +38,8 @@ export default function Home() {
 
   return (  
     <main className="flex min-h-screen flex-col items-start  overflow-x-hidden overflow-y-auto">
-      <div className="flex flex-row md:flex-col justify-center place-items-center md:items-start w-full pb-55 gap-0">
-        <div className="flex flex-col items-start justify-start pt-10 md:pt-20 lg:pt-30 xl:pt-40 w-full">
+      <div className="min-h-[100vh] flex flex-row md:flex-col justify-center place-items-center md:items-start w-full pb-55 gap-0">
+        <div className="flex flex-col items-start justify-start pt-0 md:pt-10 lg:pt-20 xl:pt-30 w-full">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-evenly w-full">
             <h1 className="text-6xl md:text-9xl font-bold font-brillant mr-8">
             <p className="text-lg md:text-2xl font-bold font-milker xl: pb-2 md:pb-5">I&apos;m</p>
@@ -53,9 +57,18 @@ export default function Home() {
           <div className="absolute left-0 top-0 h-full w-16 md:w-100 bg-gradient-to-r from-[var(--color-6)] z-10" />
           <div className="absolute right-0 top-0 h-full w-16 md:w-100 bg-gradient-to-l from-[var(--color-6)] z-10" />
           <InfiniteScrollAnimation />
+          
         </div>
 
-        <div className="flex flex-col md:flex-row justify-evenly place-items-center md:items-start w-full pt-40 gap-0 ">
+        <div
+          className="flex flex-col md:flex-row justify-evenly place-items-center md:items-end w-full gap-0"
+          style={{
+            position: "absolute",
+            left: 0,
+            right: 0,
+            bottom: "10vh", // Adjust this value as needed for spacing from bottom
+          }}
+        >
           <Navbar category="About" onScrollTo={handleScrollTo} />
           <Navbar category="Projects" onScrollTo={handleScrollTo} />
           <Navbar category="Journey" onScrollTo={handleScrollTo} />
@@ -69,15 +82,14 @@ export default function Home() {
       <NavbarSmol category="Contact" onScrollTo={handleScrollTo} /> */}
 
 
-      <div ref={aboutRef} className="w-full min-h-[10vh] flex flex-col items-center justify-center border-2 border-dashed border-[var(--color-0)]">
-        <AboutPart />
+      <div ref={aboutRef} className="w-full min-h-[100vh] flex flex-col items-center justify-center border-2 border-dashed border-[var(--color-0)]">
+          <AboutPart />
         <div ref={skillsGridRef}>
           <SkillsGrid />
         </div>
         {/* <SkillsPhysics /> */}
       </div>
       <div ref={projectsRef} className="w-full min-h-[100vh] flex items-center justify-center border-2 border-dashed border-[var(--color-0)]">
-        {/* <h2 className="text-3xl font-bold text-primary">Projects Section</h2> */}
         <ProjectScroller />
       </div>
       <div ref={journeyRef} className="w-full min-h-[100vh] flex items-center justify-center border-2 border-dashed border-[var(--color-0)]">
