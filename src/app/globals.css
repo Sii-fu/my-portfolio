@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-@tailwind utilities;
+/* @tailwind utilities; */
 
 @font-face {
   font-family: 'brillant';
@@ -41,12 +41,12 @@
   --color-6: #06141b;
 }
 
-@theme inline {
+/* @theme inline {
   --color-background: var(--color-1);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
+} */
 
 @media (prefers-color-scheme: dark) {
   :root {

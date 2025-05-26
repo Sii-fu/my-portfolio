@@ -3,8 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
-import Matter from "matter-js";
-import { motion } from "framer-motion";
+// import Matter from "matter-js";
+// import { motion } from "framer-motion";
 
 gsap.registerPlugin(ScrollToPlugin);
 
