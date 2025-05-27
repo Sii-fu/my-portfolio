@@ -39,7 +39,7 @@ export default function Home() {
   return (  
     <main className="flex min-h-screen flex-col items-start  overflow-x-hidden overflow-y-auto">
       <div className="min-h-[100vh] flex flex-row md:flex-col justify-center place-items-center md:items-start w-full pb-55 gap-0">
-        <div className="flex flex-col items-start justify-start pt-0 md:pt-10 lg:pt-20 xl:pt-30 w-full">
+        <div className="flex flex-col items-start justify-start pt-0 md:pt-5 lg:pt-15 xl:pt-20 w-full">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-evenly w-full">
             <h1 className="text-6xl md:text-9xl font-bold font-brillant mr-8">
             <p className="text-lg md:text-2xl font-bold font-milker xl: pb-2 md:pb-5">I&apos;m</p>
@@ -82,14 +82,14 @@ export default function Home() {
       <NavbarSmol category="Contact" onScrollTo={handleScrollTo} /> */}
 
 
-      <div ref={aboutRef} className="w-full min-h-[100vh] flex flex-col items-center justify-center border-2 border-dashed border-[var(--color-0)]">
+      <div ref={aboutRef} className=" z-30 w-full min-h-[100vh] flex flex-col items-center justify-center">
           <AboutPart />
         <div ref={skillsGridRef}>
           <SkillsGrid />
         </div>
         {/* <SkillsPhysics /> */}
       </div>
-      <div ref={projectsRef} className="w-full min-h-[100vh] flex items-center justify-center border-2 border-dashed border-[var(--color-0)]">
+      <div ref={projectsRef} className="w-full min-h-[100vh] flex items-center justify-center ">
         <ProjectScroller />
       </div>
       <div ref={journeyRef} className="w-full min-h-[100vh] flex items-center justify-center border-2 border-dashed border-[var(--color-0)]">

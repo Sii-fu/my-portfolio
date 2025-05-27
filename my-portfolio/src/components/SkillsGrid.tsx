@@ -60,22 +60,36 @@ export function SkillsGrid() {
     });
   }, []);
 
-  return (
-    <div className="w-full px-4 py-16 text-light flex flex-col items-center" style={{ paddingTop: "30vh", paddingBottom: "30vh" }}>
-      <h2 className="text-6xl text-[var(--color-0)] font-bold mb-4 drop-shadow-[0_4px_80px_var(--color-0)]">My Tech Stack</h2>
-      <p className="text-2xl text-light  mb-8 font-milker">I constantly try to improve</p>
-      <div className="flex flex-wrap justify-center gap-4 max-w-5xl">
-        {skills.map(({ label, icon }, i) => (
-          <div
-            key={i}
-            ref={el => { cardRefs.current[i] = el as HTMLDivElement | null; }}
-            className="flex items-center gap-2 px-5 py-2 bg-[var(--color-5)] text-[var(--color-1)] rounded-full shadow-lg font-semibold border border-[var(--color-4)] justify-center group cursor-pointer transition-all duration-300"
-          >
-            <div className="text-2xl flex items-center justify-center">{icon}</div>
-            <span className="text-base font-milker transition-all duration-300">{label}</span>
-          </div>
-        ))}
-      </div>
+return (
+    <div
+        className="w-screen px-4 py-16 text-light flex flex-col items-center relative"
+        style={{ paddingTop: "10vh", paddingBottom: "10vh" }}
+    >
+        <div
+            className="absolute inset-0 z-0 pointer-events-none"
+            style={{
+                backdropFilter: "blur(132px)",
+                WebkitBackdropFilter: "blur(132px)",
+            }}
+        />
+        <h2 className="text-6xl text-[var(--color-0)] font-bold mb-4 drop-shadow-[0_4px_80px_var(--color-0)] z-10 relative">
+            My Tech Stack
+        </h2>
+        <p className="text-2xl text-light mb-8 font-milker z-10 relative">
+            I constantly try to improve
+        </p>
+        <div className="flex flex-wrap justify-center gap-4 max-w-5xl z-10 relative">
+            {skills.map(({ label, icon }, i) => (
+                <div
+                    key={i}
+                    ref={el => { cardRefs.current[i] = el as HTMLDivElement | null; }}
+                    className="flex items-center gap-2 px-5 py-2 bg-[var(--color-5)] text-[var(--color-1)] rounded-full shadow-lg font-semibold border border-[var(--color-4)] justify-center group cursor-pointer transition-all duration-300"
+                >
+                    <div className="text-2xl flex items-center justify-center">{icon}</div>
+                    <span className="text-base font-milker transition-all duration-300">{label}</span>
+                </div>
+            ))}
+        </div>
     </div>
-  );
+);
 }
