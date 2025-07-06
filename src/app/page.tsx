@@ -2,11 +2,13 @@
 
 import { gsap } from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
-import { ProjectScroller } from '../../my-portfolio/src/components/ProjectScroller';
-import { SkillsGrid } from '../../my-portfolio/src/components/SkillsGrid';
-import { Navbar } from '../../my-portfolio/src/components/Navbar';
-import { AboutPart, InfiniteScrollAnimation } from '../../my-portfolio/src/components/AboutPart';
+import { ProjectScroller } from "../components/ProjectScroller";
+import { SkillsGrid } from "../components/SkillsGrid";
+import { Navbar } from "../components/Navbar";
+import { AboutPart, InfiniteScrollAnimation } from "../components/AboutPart";
 import { useRef } from "react";
+import Particles from "../components/particle";
+// import Journeysection from "../components/Journeysection";
 
 gsap.registerPlugin(ScrollToPlugin);
 
@@ -15,7 +17,8 @@ export default function Home() {
   const projectsRef = useRef<HTMLDivElement>(null!);
   const journeyRef = useRef<HTMLDivElement>(null!);
   const contactRef = useRef<HTMLDivElement>(null!);
-  const skillsGridRef = useRef<HTMLDivElement>(null);
+  const skillsGridRef = useRef<HTMLDivElement>(null!);
+  const blogsRef = useRef<HTMLDivElement>(null!);
 
   const handleScrollTo = (category: string) => {
     let ref: React.RefObject<HTMLDivElement> | null = null;
@@ -23,6 +26,7 @@ export default function Home() {
     else if (category === "Projects") ref = projectsRef;
     else if (category === "Journey") ref = journeyRef;
     else if (category === "Contact") ref = contactRef;
+    else if (category === "Blogs") ref = blogsRef;
 
     if (ref?.current) {
       const offset = window.innerHeight * 0.01; // 10vh
@@ -41,9 +45,14 @@ export default function Home() {
       <div className="min-h-[100vh] flex flex-row md:flex-col justify-center place-items-center md:items-start w-full pb-55 gap-0">
         <div className="flex flex-col items-start justify-start pt-0 md:pt-5 lg:pt-15 xl:pt-20 w-full">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-evenly w-full">
+            <Particles
+              className="absolute inset-0 -z-10 animate-fade-in"
+              quantity={100}
+            />
             <h1 className="text-6xl md:text-9xl font-bold font-brillant mr-8">
-            <p className="text-lg md:text-2xl font-bold font-milker xl: pb-2 md:pb-5">I&apos;m</p>
-              Sifat Bin Asad
+              
+              <p className="text-lg md:text-2xl font-bold font-milker xl: pb-2 md:pb-5">I&apos;m</p>
+                Sifat Bin Asad
             </h1>
             <ul className="flex flex-col justify-start md:pl-12 lg:pl-20 xl:pl-32 list-disc list-inside">
               <li className="text-base md:text-lg font-bold font-milker pl-0 md:pl-8">Software Engineer</li>
@@ -92,8 +101,13 @@ export default function Home() {
       <div ref={projectsRef} className="w-full min-h-[100vh] flex items-center justify-center ">
         <ProjectScroller />
       </div>
-      <div ref={journeyRef} className="w-full min-h-[100vh] flex items-center justify-center border-2 border-dashed border-[var(--color-0)]">
-        <h2 className="text-3xl font-bold text-primary">Journey Section</h2>
+      {/* <div ref={journeyRef} className="w-full min-h-[1000vh] flex items-start justify-center border-2 border-dashed border-[var(--color-0)]"> */}
+        {/* <h2 className="text-3xl font-bold text-primary">Journey Section</h2> */}
+       {/*  <Journeysection / */}
+      {/* </div> */}
+      <div ref={blogsRef} className="w-full min-h-[100vh] flex items-center justify-center border-2 border-dashed border-[var(--color-0)]">
+        <h2 className="text-3xl font-bold text-primary">Blogs Section</h2>
+
       </div>
       <div ref={contactRef} className="w-full min-h-[100vh] flex items-center justify-center border-2 border-dashed border-[var(--color-0)]">
         <h2 className="text-3xl font-bold text-primary">Contact Section</h2>

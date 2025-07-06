@@ -1,3 +1,4 @@
+// ...existing code...
 import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 

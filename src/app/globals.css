@@ -17,6 +17,63 @@
   100% { transform: translateX(-50%); }
 }
 
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Timeline animations */
+@keyframes growLine {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+
+@keyframes pulseCircle {
+  0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.5); }
+  70% { box-shadow: 0 0 0 15px rgba(59, 130, 246, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+}
+
+.timeline-line {
+  transform-origin: top;
+  animation: growLine 1.5s ease-out forwards;
+}
+
+.circle-group-0:hover,
+.circle-group-1:hover,
+.circle-group-2:hover,
+.circle-group-3:hover,
+.circle-group-4:hover,
+.circle-group-5:hover,
+.circle-group-6:hover {
+  animation: pulseCircle 1.5s infinite;
+  cursor: pointer;
+}
+
+/* Journey timeline responsive styles */
+@media (max-width: 768px) {
+  .timeline-line {
+    left: 24px !important;
+  }
+}
+
+.journey-timeline-container {
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  transition: opacity 0.5s ease-out;
+}
+
+.journey-timeline-container.expanded {
+  opacity: 1;
+  height: auto;
+  overflow: visible;
+}
+
 @font-face {
   font-family: 'kugile';
   src: url('/fonts/Kugile_Demo.ttf') format('opentype');

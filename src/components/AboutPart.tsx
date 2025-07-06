@@ -1,7 +1,8 @@
+// ...existing code...
 import { useRef, useEffect, useState } from "react";
 import { gsap } from "gsap";
 import Image from "next/image";
-
+ 
 const greetings = [
   "ٱلسَّلَامُ عَلَيْكُمْ", "Hello", "Bonjour", "Hola", "Ciao", "Привет",
   "こんにちは", "안녕하세요","Hi", "你好", "Merhaba", "Здраво",

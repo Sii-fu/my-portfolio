@@ -9,7 +9,7 @@ export function ProjectScroller() {
 
   useEffect(() => {
     const isMobile = window.innerWidth <= 768;
-    const leftX = isMobile ? [-800, -700, -400, -600, -500] : [-400, -350, -200, -300, -250];
+    const leftX = isMobile ? [-800, -700, -400, -600, -500] : [-400, -350, -280, -300, -250];
     const rightX = isMobile ? [800, 700, 400, 600, 500] : [400, 350, 200, 300, 250];
     const leftRot = isMobile ? [-20, -18, -15, -10, -12] : [-10, -8, -7, -6, -8];
     const rightRot = isMobile ? [20, 18, 15, 10, 12] : [10, 8, 7, 6, 8];
@@ -24,19 +24,22 @@ export function ProjectScroller() {
             const rightCard = row.querySelector(".card-right");
             const randomOffsetX = gsap.utils.random(-60, 60);
             const randomOffsetY = gsap.utils.random(-60, 60);
-            const randomRot = gsap.utils.random(-5, 5);
+            const randomRot = gsap.utils.random(-10, 10);
             if (leftCard) {
               ScrollTrigger.create({
                 trigger: mainRef.current,
-                start: "top 80%",
-                end: "150% bottom",
+                start: "top 100%",
+                end: "200% bottom",
                 scrub: true,
                 onUpdate: (self) => {
                   const progress = self.progress;
-                  gsap.set(leftCard, {
+                  gsap.to(leftCard, {
                     x: progress * ((leftX[i] ?? leftX[leftX.length - 1]) + randomOffsetX),
                     y: progress * ((yVals[i] ?? yVals[yVals.length - 1]) + randomOffsetY),
                     rotation: progress * ((leftRot[i] ?? leftRot[leftRot.length - 1]) + randomRot),
+                    duration: 2,
+                    ease: "power3.out",
+                    overwrite: true,
                   });
                 },
               });
@@ -44,15 +47,18 @@ export function ProjectScroller() {
             if (rightCard) {
               ScrollTrigger.create({
                 trigger: mainRef.current,
-                start: "top 80%",
-                end: "150% bottom",
+                start: "top 100%",
+                end: "200% bottom",
                 scrub: true,
                 onUpdate: (self) => {
                   const progress = self.progress;
-                  gsap.set(rightCard, {
+                  gsap.to(rightCard, {
                     x: progress * ((rightX[i] ?? rightX[rightX.length - 1]) + randomOffsetX),
                     y: progress * ((yVals[i] ?? yVals[yVals.length - 1]) + randomOffsetY),
                     rotation: progress * ((rightRot[i] ?? rightRot[rightRot.length - 1]) + randomRot),
+                    duration: 2,
+                    ease: "power3.out",
+                    overwrite: true,
                   });
                 },
               });
@@ -88,15 +94,15 @@ export function ProjectScroller() {
       const tiltVal = 20;
       const rotateX = (y / rect.height) * tiltVal;
       const rotateY = (x / rect.width) * -tiltVal;
-      const strength = 0.3;
+      const strength = 1;
       gsap.to(btn, {
         x: x * strength,
         y: y * strength,
         rotationX: rotateX,
         rotationY: rotateY,
-        transformPerspective: 500,
+        transformPerspective: 300,
         transformOrigin: "center center",
-        duration: 0.3,
+        duration: .5,
         ease: "power2.out"
       });
     };
@@ -106,7 +112,7 @@ export function ProjectScroller() {
         y: 0,
         rotationX: 0,
         rotationY: 0,
-        duration: 0.3,
+        duration: 1,
         ease: 'power2.out'
       });
     };
