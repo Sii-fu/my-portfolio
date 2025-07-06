@@ -83,7 +83,7 @@ Modes:
       "Bluetooth mobile control"
     ],
     tech: ["Arduino Uno", "HC-SR04 Ultrasonic Sensors", "HC-05 Bluetooth Module", "L298N Motor Driver", "C++"],
-    screenshots: ["/projects/wheel.jpg", "/projects/wheel1.jpg", "/projects/wheel2.jpg"]
+    screenshots: []
   },
   {
     slug: "travila-travel-platform",

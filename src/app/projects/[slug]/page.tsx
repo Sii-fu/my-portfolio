@@ -1,8 +1,9 @@
 import { projects } from "../data";
 import Image from "next/image";
 
-export default async function ProjectDetail({ params }: { params: { slug: string } }) {
-  const project = projects.find((p) => p.slug === params.slug);
+export default async function ProjectDetail({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const project = projects.find((p) => p.slug === slug);
   // Fake loading delay
   await new Promise((res) => setTimeout(res, 400));
 
