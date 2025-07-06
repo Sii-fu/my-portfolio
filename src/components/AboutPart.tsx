@@ -103,15 +103,31 @@ export function AboutPart() {
             )}
             </button>
         </div>
-        <div className="w-full ">
-          <Image
-            src="/profile.png"
-            alt="Sifat Bin Asad"
-            width={400}
-            height={400}
-            className="w-100 h-100 object-cover shadow-lg mx-auto rounded-xl"
-            priority
-          />
+        <div className="w-full flex justify-center items-center">
+          <div className="book-3d-container">
+            {/* Inner static content (profile.png) */}
+            <div className="book-3d-inner" >
+              <Image
+              src="/profile.png"
+              alt="Sifat Bin Asad"
+              width={400}
+              height={400}
+              className="object-cover rounded-xl shadow-lg"
+              priority
+              />
+            </div>
+            {/* Front cover (profile.jpg) */}
+            <div className="book-3d-cover book-3d-cover--left animate-none">
+              <Image
+                src="/profile.jpg"
+                alt="Sifat Bin Asad Cover"
+                width={400}
+                height={400}
+                className="object-cover rounded-xl shadow-lg"
+                priority
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>

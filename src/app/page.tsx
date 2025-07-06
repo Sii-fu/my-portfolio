@@ -47,7 +47,7 @@ export default function Home() {
           <div className="flex flex-col md:flex-row items-start md:items-center justify-evenly w-full">
             <Particles
               className="absolute inset-0 -z-10 animate-fade-in"
-              quantity={100}
+              quantity={200}
             />
             <h1 className="text-6xl md:text-9xl font-bold font-brillant mr-8">
               
@@ -92,6 +92,7 @@ export default function Home() {
 
 
       <div ref={aboutRef} className=" z-30 w-full min-h-[100vh] flex flex-col items-center justify-center">
+        
           <AboutPart />
         <div ref={skillsGridRef}>
           <SkillsGrid />
