@@ -1,4 +1,3 @@
-// ...existing code...
 "use client";
 
 import React, { useRef, useEffect, useState } from "react";
@@ -36,7 +35,7 @@ export default function Particles({
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const canvasContainerRef = useRef<HTMLDivElement>(null);
     const context = useRef<CanvasRenderingContext2D | null>(null);
-    const circles = useRef<any[]>([]);
+    const circles = useRef<Circle[]>([]);
     const mousePosition = useMousePosition() || { x: 0, y: 0 };
     const mouse = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
     const canvasSize = useRef<{ w: number; h: number }>({ w: 0, h: 0 });

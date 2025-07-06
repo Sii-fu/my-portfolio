@@ -1,6 +1,5 @@
-// ...existing code...
-import { useRef, useEffect } from "react";
-import { gsap } from "gsap";
+// Removed unused imports
+import { useRef } from "react";
 
 export function Navbar({ category, onScrollTo }: { category: string, onScrollTo?: (category: string) => void }) {
   return (

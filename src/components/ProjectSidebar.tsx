@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 import Link from "next/link";
 import clsx from "clsx";
 import { projects } from "../app/projects/data";

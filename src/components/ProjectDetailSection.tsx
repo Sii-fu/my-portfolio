@@ -1,7 +1,16 @@
 import Image from "next/image";
-import { projects } from "../app/projects/data";
 
-export function ProjectDetailSection({ project }: { project: any }) {
+interface Project {
+  slug: string;
+  title: string;
+  short: string;
+  description: string;
+  features: string[];
+  tech: string[];
+  screenshots: string[];
+}
+
+export function ProjectDetailSection({ project }: { project: Project }) {
   return (
     <section id={project.slug} className=" pt-10 px-10 scroll-mt-16 transition-all duration-1000">
       <div className="min-h-180 bg-[var(--color-5)] rounded-lg shadow-md p-6 mb-4 border border-[var(--color-3)]">
