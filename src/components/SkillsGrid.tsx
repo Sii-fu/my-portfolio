@@ -1,7 +1,7 @@
 import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaGit, FaLinux, FaJava, FaGithub, FaPython } from 'react-icons/fa';
-import { SiTailwindcss, SiNextdotjs, SiTypescript, SiFramer, SiExpress, SiMongodb, SiMysql, SiPostgresql, SiFirebase, SiNetlify } from 'react-icons/si';
+import { SiTailwindcss, SiNextdotjs, SiTypescript, SiFramer, SiExpress, SiMongodb, SiMysql, SiPostgresql, SiFirebase } from 'react-icons/si';
 
 const skills = [
   // 🧠 Core Web
