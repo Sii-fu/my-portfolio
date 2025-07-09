@@ -25,8 +25,10 @@ export function Navbar({ category, onScrollTo }: { category: string, onScrollTo?
           ? "Unlock the secrets of my mysterious existence. Spoiler: I run on coffee and bad puns."
           : category === "Projects"
           ? "See what happens when caffeine meets code. Expect magic, mayhem, and maybe a bug or two."
-          : category === "Journey"
-          ? "Follow my epic quest through the tech jungle. There will be memes, milestones, and misadventures."
+          // : category === "Journey"
+          // ? "Follow my epic quest through the tech jungle. There will be memes, milestones, and misadventures."
+          : category === "Blogs"
+          ? "Dive into my digital diary. Expect rants, raves, and the occasionally existential crisis."
           : category === "Contact me"
           ? "Slide into my inbox—no spam, just good vibes and maybe a dad joke."
           : "Subscribe for updates, chaos, and the occasional existential meme."}

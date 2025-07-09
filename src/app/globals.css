@@ -256,3 +256,26 @@ body {
 .book-3d-cover--left {
   transform-origin: left center;
 }
+
+
+.social-btn {
+  display: inline-block;
+  background-color: var(--color-1);
+  color: var(--color-6);
+  border-radius: 9999px;
+  font-size: 30px;
+  font-weight: 600;
+  padding: 1.25rem 1.25rem;
+  border: 1px solid var(--color-2);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.social-btn:hover {
+  transform: translateY(-0.55rem) translateX(-0.525rem);
+  box-shadow: 2px 5px 20px 0 var(--color-0);
+}
+
+.social-btn:active {
+  transform: translateY(0.125rem) translateX(0.0625rem);
+  box-shadow: none;
+}

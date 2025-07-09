@@ -6,6 +6,7 @@ import { ProjectScroller } from "../components/ProjectScroller";
 import { SkillsGrid } from "../components/SkillsGrid";
 import { Navbar } from "../components/Navbar";
 import { AboutPart, InfiniteScrollAnimation } from "../components/AboutPart";
+import ContactSection from "../components/ContactSection";
 import { useRef } from "react";
 import Particles from "../components/particle";
 // import Journeysection from "../components/Journeysection";
@@ -80,7 +81,8 @@ export default function Home() {
         >
           <Navbar category="About" onScrollTo={handleScrollTo} />
           <Navbar category="Projects" onScrollTo={handleScrollTo} />
-          <Navbar category="Journey" onScrollTo={handleScrollTo} />
+          {/* <Navbar category="Journey" onScrollTo={handleScrollTo} /> */}
+          <Navbar category="Blogs" onScrollTo={handleScrollTo} />
           <Navbar category="Contact" onScrollTo={handleScrollTo} />
         </div>
       </div>
@@ -106,12 +108,14 @@ export default function Home() {
         {/* <h2 className="text-3xl font-bold text-primary">Journey Section</h2> */}
        {/*  <Journeysection / */}
       {/* </div> */}
-      <div ref={blogsRef} className="w-full min-h-[100vh] flex items-center justify-center border-2 border-dashed border-[var(--color-0)]">
-        <h2 className="text-3xl font-bold text-primary">Blogs Section</h2>
+      <div ref={blogsRef} className="w-full min-h-[70vh] flex items-center justify-center">
+        <h2 className="text-3xl font-bold text-primary">Blogs Section(coming soon)</h2>
 
       </div>
-      <div ref={contactRef} className="w-full min-h-[100vh] flex items-center justify-center border-2 border-dashed border-[var(--color-0)]">
-        <h2 className="text-3xl font-bold text-primary">Contact Section</h2>
+      <div ref={contactRef} className="w-full min-h-[100vh] flex items-center justify-center ">
+        {/* <h2 className="text-3xl font-bold text-primary">Contact Section</h2> */}
+        <ContactSection />
+
       </div>
       <footer className="w-full text-center py-4 mt-10 bg-darkest text-primary">
         <p className="text-sm">

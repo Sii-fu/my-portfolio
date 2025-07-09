@@ -1,32 +1,78 @@
 import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
-import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaGit, FaLinux, FaJava, FaGithub } from 'react-icons/fa';
-import { SiTailwindcss, SiNextdotjs, SiTypescript, SiFramer, SiExpress, SiMongodb, SiMysql, SiPostgresql, SiPrisma, SiZod, SiShadcnui, SiPnpm, SiPostman, SiVercel } from 'react-icons/si';
+import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaGit, FaLinux, FaJava, FaGithub, FaSass, FaBootstrap, FaDocker, FaFigma, FaPython, FaMicrosoft, FaVuejs } from 'react-icons/fa';
+import { SiTailwindcss, SiNextdotjs, SiTypescript, SiFramer, SiExpress, SiMongodb, SiMysql, SiPostgresql, SiPrisma, SiZod, SiShadcnui, SiPnpm, SiPostman, SiVercel, SiRedux, SiTrpc, SiNestjs, SiLangchain, SiOpencv, SiHuggingface, SiGoogle, SiFirebase, SiSupabase, SiJest, SiCypress, SiGitlab, SiNetlify, SiFlutter, SiDart, SiC, SiSvelte } from 'react-icons/si';
 
 const skills = [
+  // 🧠 Core Web
   { label: "HTML", icon: <FaHtml5 className="text-orange-600" /> },
   { label: "CSS", icon: <FaCss3Alt className="text-blue-600" /> },
   { label: "JavaScript", icon: <FaJs className="text-yellow-400" /> },
   { label: "TypeScript", icon: <SiTypescript className="text-blue-500" /> },
+
+  // ⚛️ Frontend Frameworks
   { label: "ReactJS", icon: <FaReact className="text-cyan-400" /> },
   { label: "NextJS", icon: <SiNextdotjs /> },
+  // { label: "VueJS", icon: <FaVuejs className="text-green-500" /> },
+  // { label: "Svelte", icon: <SiSvelte className="text-orange-500" /> },
+
+  // 🎨 Styling & Animations
   { label: "Tailwind CSS", icon: <SiTailwindcss className="text-sky-400" /> },
+  // { label: "Sass", icon: <FaSass className="text-pink-500" /> },
   { label: "Framer Motion", icon: <SiFramer className="text-pink-400" /> },
-  { label: "Shadcn", icon: <SiShadcnui /> },
+  // { label: "Shadcn", icon: <SiShadcnui /> },
+  // { label: "Bootstrap", icon: <FaBootstrap className="text-purple-600" /> },
+
+  // ⚙️ State Management
+  // { label: "Redux", icon: <SiRedux className="text-purple-500" /> },
+
+  // 💾 Backend
   { label: "NodeJS", icon: <FaNodeJs className="text-green-500" /> },
   { label: "ExpressJS", icon: <SiExpress /> },
+  // { label: "tRPC", icon: <SiTrpc /> },
+  // { label: "NestJS", icon: <SiNestjs className="text-red-500" /> },
+  // { label: "Prisma", icon: <SiPrisma /> },
+  // { label: "Zod", icon: <SiZod /> },
+
+  // 🧠 LLM & AI
+  { label: "LangChain", icon: <SiLangchain /> },
+  { label: "Python", icon: <FaPython className="text-yellow-400" /> },
+  { label: "OpenCV", icon: <SiOpencv className="text-blue-400" /> },
+  { label: "Hugging Face", icon: <SiHuggingface className="text-yellow-400" /> },
+  { label: "Gemini", icon: <SiGoogle className="text-blue-500" /> },
+
+  // 🛢️ Databases
   { label: "MongoDB", icon: <SiMongodb className="text-green-700" /> },
   { label: "MySQL", icon: <SiMysql className="text-blue-700" /> },
   { label: "PostgreSQL", icon: <SiPostgresql className="text-blue-500" /> },
-  { label: "Prisma", icon: <SiPrisma /> },
-  { label: "Zod", icon: <SiZod /> },
+  { label: "Firebase", icon: <SiFirebase className="text-yellow-400" /> },
+  { label: "Supabase", icon: <SiSupabase className="text-green-500" /> },
+
+  // 🧪 Testing
+  // { label: "Jest", icon: <SiJest className="text-pink-600" /> },
+  // { label: "Cypress", icon: <SiCypress className="text-green-600" /> },
+  // { label: "Playwright", icon: <FaMicrosoft className="text-blue-600" /> },
+
+  // 🚀 DevOps / Infra
   { label: "Git", icon: <FaGit className="text-orange-600" /> },
   { label: "GitHub", icon: <FaGithub /> },
+  // { label: "GitLab", icon: <SiGitlab className="text-orange-400" /> },
   { label: "Vercel", icon: <SiVercel /> },
+  { label: "Netlify", icon: <SiNetlify className="text-green-500" /> },
+  { label: "Docker", icon: <FaDocker className="text-blue-500" /> },
   { label: "Postman", icon: <SiPostman className="text-orange-400" /> },
-  { label: "Java", icon: <FaJava className="text-red-600" /> },
   { label: "Linux", icon: <FaLinux /> },
-  { label: "pnpm", icon: <SiPnpm className="text-yellow-500" /> },
+  // { label: "pnpm", icon: <SiPnpm className="text-yellow-500" /> },
+
+  // 📱 Mobile
+  { label: "Flutter", icon: <SiFlutter className="text-sky-400" /> },
+  { label: "Dart", icon: <SiDart className="text-blue-600" /> },
+  // { label: "React Native", icon: <FaReact className="text-cyan-400" /> },
+
+  // 🧠 Others
+  { label: "Java", icon: <FaJava className="text-red-600" /> },
+  { label: "C/C++", icon: <SiC className="text-blue-600" /> },
+  { label: "Figma", icon: <FaFigma className="text-purple-400" /> },
 ];
 
 export function SkillsGrid() {

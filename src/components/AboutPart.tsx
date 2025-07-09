@@ -62,7 +62,15 @@ export function AboutPart() {
       <div className="w-full min-h-[15vh] flex flex-row-reverse items-start pt-15 pb-15">
         <div className="w-full max-w-4xl mx-auto flex flex-col gap-6 p-6 sm:p-10 bg-primary/70 backdrop-blur-md rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.2)] border border-dark relative transition-all duration-500">
           <div className="relative">
-            <h3 className="text-4xl sm:text-5xl font-extrabold text-[var(--color-0)] drop-shadow-glow tracking-tight">Who am I?</h3>
+            <h3 className="text-4xl sm:text-5xl font-extrabold text-[var(--color-0)] drop-shadow-glow tracking-tight">Who am I?
+              <Image
+                src="/favicon.ico" // or your preferred icon path
+                alt="icon"
+                width={60}
+                height={60}
+                className="inline-block ml-5 mb-6 " 
+              />
+            </h3>
           </div>
           <div className="flex items-center text-4xl">
             <span ref={greetingRef} className="inline-block origin-left transition-transform">
