@@ -33,8 +33,23 @@ export default function ContactSection() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    // Here you would handle sending the form data to your backend or email service
+    try {
+      const response = await fetch("https://formspree.io/f/manjgdpb", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: form.email,
+          message: form.message,
+        }),
+      });
+      if (response.ok) {
+        setSubmitted(true);
+      } else {
+        alert("There was an error sending your message. Please try again later.");
+      }
+    } catch (error) {
+      alert("There was an error sending your message. Please try again later.");
+    }
   };
 
   return (
