@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import {
   FaGithub,
   FaLinkedin,
-  FaTwitter,
-  FaEnvelope,
   FaFacebook,
   FaInstagram,
 } from "react-icons/fa";
@@ -35,29 +33,13 @@ export default function ContactSection() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Send form data to a public form endpoint (e.g., Formspree)
-    try {
-      const response = await fetch("https://formspree.io/f/manjgdpb", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email: form.email,
-          message: form.message,
-        }),
-      });
-      if (response.ok) {
-        setSubmitted(true);
-      } else {
-        alert("There was an error sending your message. Please try again later.");
-      }
-    } catch (err) {
-      alert("There was an error sending your message. Please try again later.");
-    }
+    setSubmitted(true);
+    // Here you would handle sending the form data to your backend or email service
   };
 
   return (
     <div className="relative flex flex-row items-center justify-center min-h-[600px] py-10 bg-[var(--color-6)] font-sans ">
-      {/* Social buttons at random positions */}
+      {/* Social buttons at fixed positions */}
       <div className="relative w-[350px] h-[350px] min-w-[300px] min-h-[300px] mr-10">
         {socialLinks.map((link, i) => (
           <a
@@ -73,9 +55,9 @@ export default function ContactSection() {
         ))}
       </div>
       {/* Contact form */}
-      <div className="w-full max-w-xl mx-20 bg-primary/70 backdrop-blur-md rounded-2xl shadow-[0_0px_15px_var(--color-3)] border border-dark p-8 flex flex-col items-center">
+      <div className="w-full max-w-xl mx-20 bg-primary/70 backdrop-blur-md rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.2)] border border-dark p-8 flex flex-col items-center">
         <h2 className="text-4xl font-bold text-[var(--color-0)] mb-4">Contact Me</h2>
-        <p className="text-xl text-light mb-6 text-center">Have a question, project, or just want to say hi? Fill out the form below and I'll get back to you!</p>
+        <p className="text-lg text-light mb-6 text-center">Have a question, project, or just want to say hi? Fill out the form below and I&apos;ll get back to you!</p>
         {submitted ? (
           <div className="text-xl text-[var(--color-0)] font-semibold py-8">Thank you for reaching out! 🚀</div>
         ) : (
@@ -87,7 +69,7 @@ export default function ContactSection() {
               value={form.email}
               onChange={handleChange}
               required
-              className="px-4 py-3 rounded-lg bg-[var(--color-5)] text-[var(--color-1)] border border-[var(--color-4)] focus:outline-none focus:ring-2 focus:ring-[var(--color-0)] font-milker"
+              className="px-4 py-3 rounded-lg bg-[var(--color-5)] text-[var(--color-0)] border border-[var(--color-4)] focus:outline-none focus:ring-2 focus:ring-[var(--color-0)] font-milker"
             />
             <textarea
               name="message"
@@ -96,11 +78,11 @@ export default function ContactSection() {
               onChange={handleChange}
               required
               rows={5}
-              className="px-4 py-3 rounded-lg bg-[var(--color-5)] text-[var(--color-1)] border border-[var(--color-4)] focus:outline-none focus:ring-2 focus:ring-[var(--color-0)] font-milker resize-none"
+              className="px-4 py-3 rounded-lg bg-[var(--color-5)] text-[var(--color-0)] border border-[var(--color-4)] focus:outline-none focus:ring-2 focus:ring-[var(--color-0)] font-milker resize-none"
             />
             <button
               type="submit"
-              className="mt-2 bg-[var(--color-0)] text-dark font-bold py-3 rounded-lg shadow-lg hover:bg-[var(--color-1)] transition-colors duration-300 pointer-events-auto"
+              className="mt-2 bg-[var(--color-0)] text-dark font-bold py-3 rounded-lg shadow-lg hover:bg-[var(--color-1)] transition-colors duration-200"
             >
               Send Message
             </button>
