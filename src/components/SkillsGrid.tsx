@@ -75,6 +75,38 @@ const skills = [
   { label: "Figma", icon: <FaFigma className="text-purple-400" /> },
 ];
 
+const skillMap = new Map(skills.map((skill) => [skill.label, skill.icon]));
+
+const skillCategories = [
+  {
+    title: "💻 Languages",
+    items: ["Python", "Java", "C/C++", "JavaScript", "TypeScript", "Dart"]
+  },
+  {
+    title: "🎨 Frontend & Design",
+    items: ["ReactJS", "NextJS", "Flutter", "Tailwind CSS", "Framer Motion", "Figma"]
+  },
+  {
+    title: "⚙️ Backend & Databases",
+    items: [
+      "NodeJS",
+      "ExpressJS",
+      "PostgreSQL",
+      "MongoDB",
+      "MySQL",
+      "Firebase",
+      "Supabase",
+      "Vercel",
+      "Docker",
+      "Linux"
+    ]
+  },
+  {
+    title: "🧠 AI, ML & Dev Tools",
+    items: ["LangChain", "Hugging Face", "Gemini", "OpenCV", "Git", "GitHub", "Postman"]
+  }
+];
+
 export function SkillsGrid() {
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -106,7 +138,9 @@ export function SkillsGrid() {
     });
   }, []);
 
-return (
+  let pillIndex = 0;
+
+  return (
     <div
         className="w-screen px-4 py-16 text-light flex flex-col items-center relative"
         style={{ paddingTop: "10vh", paddingBottom: "10vh" }}
@@ -124,15 +158,31 @@ return (
         <p className="text-2xl text-light mb-8 font-milker z-10 relative">
             I constantly try to improve
         </p>
-        <div className="flex flex-wrap justify-center gap-4 max-w-5xl z-10 relative">
-            {skills.map(({ label, icon }, i) => (
+        <div className="grid w-full max-w-5xl grid-cols-1 gap-6 md:grid-cols-2 z-10 relative">
+            {skillCategories.map((category) => (
                 <div
-                    key={i}
-                    ref={el => { cardRefs.current[i] = el as HTMLDivElement | null; }}
-                    className="flex items-center gap-2 px-5 py-2 bg-[var(--color-5)] text-[var(--color-1)] rounded-full shadow-lg font-semibold border border-[var(--color-4)] justify-center group cursor-pointer transition-all duration-300"
+                    key={category.title}
+                    className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-md shadow-[0_10px_30px_rgba(0,0,0,0.2)]"
                 >
-                    <div className="text-2xl flex items-center justify-center">{icon}</div>
-                    <span className="text-base font-milker transition-all duration-300">{label}</span>
+                    <p className="text-lg font-semibold text-white/80">{category.title}</p>
+                    <div className="mt-4 flex flex-wrap gap-2 md:gap-3 justify-start">
+                        {category.items.map((label) => {
+                            const icon = skillMap.get(label);
+                            if (!icon) return null;
+                            const index = pillIndex;
+                            pillIndex += 1;
+                            return (
+                                <div
+                                    key={`${category.title}-${label}`}
+                                    ref={el => { cardRefs.current[index] = el as HTMLDivElement | null; }}
+                                    className="flex items-center gap-2 px-5 py-2 bg-[var(--color-5)] text-[var(--color-1)] rounded-full shadow-lg font-semibold border border-[var(--color-4)] justify-center group cursor-pointer transition-all duration-300"
+                                >
+                                    <div className="text-2xl flex items-center justify-center">{icon}</div>
+                                    <span className="text-base font-milker transition-all duration-300">{label}</span>
+                                </div>
+                            );
+                        })}
+                    </div>
                 </div>
             ))}
         </div>

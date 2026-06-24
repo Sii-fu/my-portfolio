@@ -74,11 +74,11 @@ export function ProjectScroller() {
   }, []);
 
   const projects = [
-    { title: "Project One", side: "left", image: "/projects/project2.png" },
-    { title: "MediaVerse", side: "right", image: "/projects/project1.png" },
-    { title: "AskMe", side: "left", image: "/projects/project3.png" },
-    { title: "Travila", side: "right", image: "/projects/project5.png" },
-    { title: "SayHello", side: "left", image: "/projects/project4.png" },
+    { title: "Travila", side: "left", image: "/projects/travila.png" },
+    { title: "Desh Bangla Patente", side: "right", image: "/projects/deshbangla.jpeg" },
+    { title: "MediaVerse", side: "left", image: "/projects/mediaverse.png" },
+    { title: "AskMe", side: "right", image: "/projects/askme.jpeg" },
+    { title: "Knowble", side: "left", image: "/projects/knowble.jpeg" },
   ];
 
   // Add GSAP 3D magnet effect to the Projects button (type-safe)
