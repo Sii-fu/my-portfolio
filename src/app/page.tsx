@@ -64,7 +64,10 @@ function DockItem({ label, isActive, activeScale, isDockHovering, onClick, mouse
   const hoverAmount = useSpring(hoverTarget, { stiffness: 120, damping: 12, mass: 1 });
   const scale = useTransform(
     [activeSpring, hoverScale, hoverAmount],
-    ([activeValue, hoverValue, amount]) => activeValue + (hoverValue - activeValue) * amount
+    (values: number[]) => {
+      const [activeValue, hoverValue, amount] = values as [number, number, number];
+      return activeValue + (hoverValue - activeValue) * amount;
+    }
   );
 
   return (
