@@ -1,42 +1,26 @@
-import Image from "next/image";
+import React from "react";
 import Link from "next/link";
-import { projects } from "../data";
+import ReactMarkdown from "react-markdown";
+import ProjectSlider from '@/components/ProjectSlider';
+import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw"; // Import rehype-raw
+import { getAllProjects, getProjectBySlug } from "@/lib/projects";
 
-function renderMarkdown(text: string) {
-  return text
-    .trim()
-    .split("\n\n")
-    .map((block, index) => {
-      const lines = block.split("\n").map((line) => line.trim()).filter(Boolean);
-      const isList = lines.every((line) => line.startsWith("-"));
+type ProjectDetailProps = {
+  params: Promise<{ slug: string }>;
+};
 
-      if (isList) {
-        return (
-          <ul key={`list-${index}`} className="ml-5 list-disc space-y-1 text-white/70">
-            {lines.map((line, lineIndex) => (
-              <li key={`item-${index}-${lineIndex}`}>{line.replace(/^-\\s*/, "")}</li>
-            ))}
-          </ul>
-        );
-      }
+export async function generateStaticParams() {
+  const projects = await getAllProjects();
 
-      return (
-        <p key={`para-${index}`} className="text-white/70">
-          {block}
-        </p>
-      );
-    });
+  return projects.map((project) => ({
+    slug: project.slug,
+  }));
 }
 
-// 1. Make the function async and type params as a Promise
-export default async function ProjectDetail({ params }: { params: Promise<{ slug: string }> }) {
-  
-  // 2. Await the parameters before using them
+export default async function ProjectDetail({ params }: ProjectDetailProps) {
   const { slug } = await params;
-  
-  // 3. Look up projects using the resolved 'slug' variable
-  const project = projects.find((item) => item.slug === slug);
-  const otherProjects = projects.filter((item) => item.slug !== slug);
+  const [project, allProjects] = await Promise.all([getProjectBySlug(slug), getAllProjects()]);
 
   if (!project) {
     return (
@@ -49,32 +33,29 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
   return (
     <main className="min-h-screen bg-[var(--color-6)] font-sans px-4 py-8 text-white sm:px-8 lg:px-12">
       <div className="mx-auto flex flex-col lg:flex-row lg:h-[calc(100vh-80px)] lg:overflow-hidden">
-        
+
         {/* Sidebar */}
         <aside className="hidden lg:flex lg:w-1/4 h-full overflow-y-auto border-r border-white/10 pr-4 flex flex-col gap-4">
-          {projects.map((item) => {
-            // 4. Update the active check to use the resolved 'slug'
+          {allProjects.map((item) => {
             const isActive = item.slug === slug;
             return (
               <Link
                 key={item.slug}
                 href={`/projects/${item.slug}`}
-                className={`rounded-2xl border p-4 transition-all duration-300 ${
-                  isActive
-                    ? "border-emerald-500/20 bg-emerald-500/10"
-                    : "border-white/10 bg-white/5 hover:border-white/20"
-                }`}
+                className={`rounded-2xl border p-4 transition-all duration-300 ${isActive
+                  ? "border-emerald-500/20 bg-emerald-500/10"
+                  : "border-white/10 bg-white/5 hover:border-white/20"
+                  }`}
               >
                 <div className="flex items-center justify-between gap-2">
                   <h3 className="text-base font-semibold text-white">{item.title}</h3>
                   {isActive && <span className="h-2 w-2 rounded-full bg-white" />}
                 </div>
-                {/* Tech tags / mapping below... */}
               </Link>
             );
           })}
         </aside>
-        
+
         <section className="w-full lg:w-3/4 h-full lg:overflow-y-auto lg:pl-6">
           <div className="max-w-4xl">
             <Link href="/projects" className="text-sm font-semibold text-white/60 hover:text-white">
@@ -90,7 +71,7 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
                   rel="noreferrer"
                   className="transition-colors hover:text-white"
                 >
-                  GitHub ↗
+                  GitHub
                 </a>
               )}
               {project.links?.live && (
@@ -100,7 +81,7 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
                   rel="noreferrer"
                   className="transition-colors hover:text-white"
                 >
-                  Live Demo ↗
+                  Live Demo
                 </a>
               )}
               {project.links?.appStore && (
@@ -108,9 +89,9 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
                   href={project.links.appStore}
                   target="_blank"
                   rel="noreferrer"
-                  className="transition-colors hover:text-white"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-red/20 bg-white/5 text-white/80 text-xs font-semibold tracking-wide transition-all hover:bg-white/10 hover:border-white/40 hover:text-white shadow-sm"
                 >
-                  App Store ↗
+                  Apple App Store
                 </a>
               )}
               {project.links?.playStore && (
@@ -118,9 +99,9 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
                   href={project.links.playStore}
                   target="_blank"
                   rel="noreferrer"
-                  className="transition-colors hover:text-white"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-300 text-xs font-semibold tracking-wide transition-all hover:bg-emerald-500/20 hover:border-emerald-400/50 hover:text-emerald-200 shadow-sm"
                 >
-                  Play Store ↗
+                  Google Play Store
                 </a>
               )}
               {project.links?.figma && (
@@ -135,21 +116,6 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
               )}
             </div>
 
-            <div className="mt-6 space-y-4 text-base leading-relaxed text-white/70">
-              {renderMarkdown(project.description)}
-            </div>
-
-            {project.features?.length > 0 && (
-              <div className="mt-8">
-                <h2 className="text-lg font-semibold text-white">Features</h2>
-                <ul className="mt-3 list-disc space-y-1 pl-5 text-white/70">
-                  {project.features.map((feature) => (
-                    <li key={feature}>{feature}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
-
             {project.tech?.length > 0 && (
               <div className="mt-8 flex flex-wrap gap-2">
                 {project.tech.map((tech) => (
@@ -163,37 +129,61 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
               </div>
             )}
 
-            {project.screenshots?.length > 0 && (
-              <div className="mt-8">
-                <h2 className="text-lg font-semibold text-white">Screenshots</h2>
-                <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2">
-                  {project.screenshots.map((src, index) => (
-                    <Image
-                      key={`${project.slug}-shot-${index}`}
-                      src={src}
-                      alt={`${project.title} screenshot`}
-                      width={800}
-                      height={600}
-                      className="w-full rounded-xl border border-white/10 object-cover"
-                    />
-                  ))}
-                </div>
-              </div>
-            )}
+            {/* Render with custom components and rehypeRaw */}
+            <div className="prose prose-invert mt-6 max-w-none hover:prose-a:text-emerald-400">
+              <ReactMarkdown
+                remarkPlugins={[remarkGfm]}
+                rehypePlugins={[rehypeRaw]}
+                components={{
+                  // Overrides paragraph blocks to prevent illegal nesting
+                  p: (props: any) => {
+                    const { children } = props;
+
+                    // Unwraps paragraphs containing any component carrying 'folder' or 'images' props
+                    const hasSlider = React.Children.toArray(children).some(
+                      (child: any) =>
+                        child &&
+                        typeof child === 'object' &&
+                        child.props &&
+                        ('folder' in child.props || 'images' in child.props)
+                    );
+
+                    if (hasSlider) {
+                      // Render a fragment. The ProjectSlider already manages its own margins (my-8)
+                      return <>{children}</>;
+                    }
+
+                    return <p {...props}>{children}</p>;
+                  },
+                  'project-slider': (props: any) => {
+                    const { folder, images, aspect } = props;
+                    const imageList = typeof images === 'string'
+                      ? images.split(',').map((img: string) => img.trim())
+                      : [];
+
+                    return <ProjectSlider folder={folder} images={imageList} aspect={aspect} />;
+                  }
+                } as any}
+              >
+                {project.content}
+              </ReactMarkdown>
+            </div>
 
             <div className="mt-12 lg:hidden">
               <h2 className="text-lg font-semibold text-white">Other Projects</h2>
               <div className="mt-4 flex gap-4 overflow-x-auto pb-2">
-                {otherProjects.map((item) => (
-                  <Link
-                    key={`mobile-${item.slug}`}
-                    href={`/projects/${item.slug}`}
-                    className="min-w-[240px] rounded-2xl border border-white/10 bg-white/5 p-4 transition-colors hover:border-white/20"
-                  >
-                    <h3 className="text-sm font-semibold text-white">{item.title}</h3>
-                    <p className="mt-2 text-xs text-white/60">{item.short}</p>
-                  </Link>
-                ))}
+                {allProjects
+                  .filter((item) => item.slug !== slug)
+                  .map((item) => (
+                    <Link
+                      key={`mobile-${item.slug}`}
+                      href={`/projects/${item.slug}`}
+                      className="min-w-[240px] rounded-2xl border border-white/10 bg-white/5 p-4 transition-colors hover:border-white/20"
+                    >
+                      <h3 className="text-sm font-semibold text-white">{item.title}</h3>
+                      <p className="mt-2 text-xs text-white/60">{item.short}</p>
+                    </Link>
+                  ))}
               </div>
             </div>
           </div>
